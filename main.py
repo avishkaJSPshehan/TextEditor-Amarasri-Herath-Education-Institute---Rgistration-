@@ -357,6 +357,10 @@ root.bind('<Control-a>', select_all)
 
 # Create Buttons
 
+def copyAllText():
+	select_all("")
+	copy_text("")
+
 # Bold Button
 bold_button = Button(toolbar_frame, text="Bold", command=bold_it)
 bold_button.grid(row=0, column=0, sticky=W, padx=5, pady=5)
@@ -374,7 +378,7 @@ redo_button.grid(row=0, column=3, padx=5, pady=5)
 color_text_button = Button(toolbar_frame, text="Text Color", command=text_color)
 color_text_button.grid(row=0, column=4, padx=5, pady=5)
 
-copy_text_button = Button(toolbar_frame, text="Copy",bg="cyan", command=text_color)
+copy_text_button = Button(toolbar_frame, text="Copy",bg="cyan", command=copyAllText)
 copy_text_button.grid(row=0, column=5, padx=5, pady=5)
 
 
