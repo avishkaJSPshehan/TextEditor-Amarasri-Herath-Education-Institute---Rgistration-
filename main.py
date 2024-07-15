@@ -341,6 +341,8 @@ options_menu.add_command(label="Night Mode Off", command=night_off)
 status_bar = Label(root, text='Ready        ', anchor=E)
 status_bar.pack(fill=X, side=BOTTOM, ipady=15)
 
+
+
 # Edit Bindings
 root.bind('<Control-Key-x>', cut_text)
 root.bind('<Control-Key-c>', copy_text)
@@ -371,6 +373,9 @@ redo_button.grid(row=0, column=3, padx=5, pady=5)
 # Text Color
 color_text_button = Button(toolbar_frame, text="Text Color", command=text_color)
 color_text_button.grid(row=0, column=4, padx=5, pady=5)
+
+copy_text_button = Button(toolbar_frame, text="Copy",bg="cyan", command=text_color)
+copy_text_button.grid(row=0, column=5, padx=5, pady=5)
 
 
 root.mainloop()
