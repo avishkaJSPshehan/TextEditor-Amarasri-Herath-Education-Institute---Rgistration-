@@ -131,6 +131,14 @@ def paste_text(e):
 			position = my_text.index(INSERT)
 			my_text.insert(position, selected)
 
+def paste_new_text(new_text):
+	
+	selected = new_text
+
+	my_text.delete("1.0", "end")
+	position = my_text.index(INSERT)
+	my_text.insert(position, selected)
+
 # Bold Text
 def bold_it():
 	# Create our font
@@ -287,7 +295,7 @@ hor_scroll = Scrollbar(my_frame, orient='horizontal')
 hor_scroll.pack(side=BOTTOM, fill=X)
 
 # Create Text Box
-my_text = Text(my_frame, width=97, height=25, font=("Helvetica", 16), selectbackground="yellow", selectforeground="black", undo=True, yscrollcommand=text_scroll.set, wrap="none", xscrollcommand=hor_scroll.set)
+my_text = Text(my_frame, width=97, height=25, font=("unicode", 16), selectbackground="yellow", selectforeground="black", undo=True, yscrollcommand=text_scroll.set, wrap="none", xscrollcommand=hor_scroll.set)
 my_text.pack()
 
 # Configure our Scrollbar
@@ -360,6 +368,26 @@ root.bind('<Control-a>', select_all)
 def copyAllText():
 	select_all("")
 	copy_text("")
+
+	selected = root.clipboard_get()
+	linelist = selected.split('\n')
+	new_text = ""
+	new_reg_num = ""
+
+	for i in range(0,len(linelist)-1):
+		temp_word = linelist[i].split(" ")
+		if temp_word[0] == "Your":
+			word_and_num = linelist[i].split(":")
+			new_reg_num = word_and_num[0] + ": " + str((int(word_and_num[1]) + 1))
+			linelist[i] = new_reg_num
+			break
+	
+	for i in linelist:
+		new_text += i + '\n'
+	
+	paste_new_text(new_text)
+			
+
 
 # Bold Button
 bold_button = Button(toolbar_frame, text="Bold", command=bold_it)
